@@ -1,13 +1,9 @@
 import pandas as pd
-from sqlalchemy import *
+from sqlalchemy import create_engine
 
 
-
-#engine = create_engine("mysql://root:88888888@127.0.0.1:3306/LSU")
-engine = create_engine("mysql+pymysql://root:Lgg971225@127.0.0.1:3306/lsu", pool_pre_ping=True)
+engine = create_engine("mysql://root:88888888@127.0.0.1:3306/LSU")
 skr = engine.connect()
-
-
 df = pd.read_csv('Students.csv', header=0)
 df1 = pd.read_csv('Professors.csv', header=0)
 
@@ -15,10 +11,10 @@ df1 = pd.read_csv('Professors.csv', header=0)
 #db = mysql.connect(host="127.0.0.1",port=3306, user="root", password='88888888', db="LSU")  # schema => database
 #skr = db.cursor()
 
-skr.execute(" CREATE TABLE IF NOT EXISTS Students( email CHAR(50), password CHAR(20), s_name CHAR(50), age INT, gender CHAR(1), "
+skr.execute(" CREATE TABLE IF NOT EXISTS Students( email CHAR(50), password TEXT(256), s_name CHAR(50), age INT, gender CHAR(1), "
             "major CHAR(10), street CHAR(50), zipcode CHAR(5),PRIMARY KEY (email)) ")
 skr.execute(" CREATE TABLE IF NOT EXISTS Zipcode(zipcode CHAR(5), city CHAR(20), state CHAR(20), PRIMARY KEY (zipcode)) ")
-skr.execute(" CREATE TABLE IF NOT EXISTS Professor( email CHAR(50), password CHAR(20), p_name CHAR(50), age INT, gender CHAR(1), "          
+skr.execute(" CREATE TABLE IF NOT EXISTS Professor( email CHAR(50), password TEXT(256), p_name CHAR(50), age INT, gender CHAR(1), "          
             " office_address CHAR(50), department CHAR(10), title CHAR(10), PRIMARY KEY (email) )")                                                 # office_address = office
 skr.execute(" CREATE TABLE IF NOT EXISTS Department(dept_id CHAR(10), dept_name CHAR(50), dept_head CHAR(50), PRIMARY KEY (dept_id))")              # dept_head = professor name
                                                                                                                                                     # dept_id = department
@@ -51,9 +47,10 @@ skr.execute("CREATE TABLE IF NOT EXISTS Capstone_grades(course_id CHAR(15), sec_
 
 
 ####import data to table : students
-student_df = df[["Email","Password","Full Name","Age", "Gender", "Major","Street", "Zip"]]
+student_df = df[["Email", "Password", "Full Name","Age", "Gender", "Major", "Street", "Zip"]]
 student_df.columns=["email","password","s_name","age","gender","major","street","zipcode"]
 #student_df.to_sql(name="Students", con=skr, if_exists="append", index=False)
+#skr.execute("update Students set password = sha2(password, 256)")  #hash password with sha256
 
 ####import data to table: zipcode
 zipcode_df = df[["Zip", "City", "State"]]
@@ -65,6 +62,7 @@ zipcode_df.drop_duplicates(keep="first",inplace=True)
 prof_df = df1 [["Email", "Password", "Name", "Age", "Gender", "Office", "Department", "Title"]]
 prof_df.columns=["email",'password','p_name',"age","gender","office_address","department","title"]
 #prof_df.to_sql(name="Professor", con=skr, if_exists="append", index=False)
+#skr.execute("update Professor set password = sha2(password, 256)") #hash password with sha256
 
 ####import data to table: department
 D_info_df = df1.loc[ df1["Title"] == "Head"]
@@ -203,11 +201,11 @@ Capstone_grade_df.columns = ["course_id", "sec_no", "team_id", "grade"]
 Capstone_grade_df.drop_duplicates(keep="first", inplace=True)
 #Capstone_grade_df.to_sql(name="Capstone_grades", con=skr, if_exists="append", index=False)
 
-
-#p=skr.execute("SELECT email FROM LSU.Professor")
-#p1=p.fetchall()
-#print(p1[1])
-
+"""
+p=skr.execute("SELECT email FROM LSU.Professor")
+p1=p.fetchall()
+print(p1[1])
+"""
 
 skr.close()
 
