@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<br>
+<head>
+<meta charset="utf-8">
+<h2>我的第一个标题</h2>
+<title>test</title>
+</head>
+
+
+<a id="tips">有用的提示部分</a>
+<style>
+    .center{
+        text-align:center;
+    }
+</style>
+<!--class 选择器-->
+<p class="center">我的第一个段落。</p>
+<p style="color:blue;margin-left:20px;">This is a paragraph.</p>
+<br style="background-color:yellow;">
+<h2 style="background-color:red;">这是一个标题</h2>
+<p style="background-color:green;">这是一个段落。</p>
+
+<h1 style="font-family:verdana;">一个标题</h1>
+<p style="font-family:Arial;color:red;font-size:20px;">一个段落。</p>
+</br>
+</br>
+</br>
+</br>
+<h1 style="text-align:center;">居中对齐的标题</h1>
+<p>这是一个段落。</p>
+
+<!-- no order-->
+<ul>
+<li>Coffee</li>
+<li>Milk</li>
+</ul>
+<!-- in order-->
+<ol>
+<li>Coffee</li>
+<li>Milk</li>
+</ol>
+
+<style>
+p1
+{
+    color :blue;
+    text-align:center;
+}
+</style>
+
+
+<p1>
+<br>
+<li>Username:<input type="text" name="login"></li></br>
+<li> Password: <input type="password" name="pwd"></li></br>
+<input type="submit" value="login">
+</br>
+</p1>
+<script>
+document.write("Hello World!");
+</script>
+</form>
+</body>
+</body>
+</html>
+
+
+<!--
+
+<-a href="http://www.runoob.com">这是一个链接</a >   超链接
+
+< img src="logo.png" width="258" height="39" />
+
+< /br  >  换行
+< li   >   =  ·
+
+<head>
+<style type="text/css">
+body {background-color:yellow}
+p {color:blue}
+</style>
+</head>
+
+HTML <meta> 元素
+meta标签描述了一些基本的元数据。
+<meta> 标签提供了元数据.元数据也不显示在页面上，但会被浏览器解析。
+META 元素通常用于指定网页的描述，关键词，文件的最后修改时间，作者，和其他元数据。
+元数据可以使用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务。
+<meta> 一般放置于 <head> 区域
+
+为搜索引擎定义关键词:
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+为网页定义描述内容:
+<meta name="description" content="免费 Web & 编程 教程">
+定义网页作者:
+<meta name="author" content="Runoob">
+每30秒钟刷新当前页面:
+<meta http-equiv="refresh" content="30">
+
+HTML <script> 元素
+<script>标签用于加载脚本文件，如： JavaScript。
+
+<title> 元素:
+定义了浏览器工具栏的标题
+当网页添加到收藏夹时，显示在收藏夹中的标题
+显示在搜索引擎结果页面的标题
+
+
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="图片url">
+<title>这是一个带图片的标签</title>
+</head>
+
+CSS 可以通过以下方式添加到HTML中:
+内联样式- 在HTML元素中使用"style" 属性
+内部样式表 -在HTML文档头部 <head> 区域使用<style> 元素 来包含CSS
+外部引用 - 使用外部 CSS 文件
+
+内部样式表
+当单个文件需要特别样式时，就可以使用内部样式表。你可以在<head> 部分通过 <style>标签定义内部样式表:
+<head>
+<style type="text/css">
+body {background-color:yellow;}
+p {color:blue;}
+</style>
+</head>
+
+外部样式表
+当样式需要被应用到很多页面的时候，外部样式表将是理想的选择。使用外部样式表，你就可以通过更改一个文件来改变整个站点的外观。
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+HTML 图像- Alt属性
+alt 属性用来为图像定义一串预备的可替换的文本。
+替换文本属性的值是用户定义的。
+<img src="boat.gif" alt="Big Boat">
+在浏览器无法载入图像时，替换文本属性告诉读者她们失去的信息。此时，浏览器将显示这个替代性的文本而不是图像。为页面上的图像都加上替换文本属性是个好习惯，这样有助于更好的显示信息，并且对于那些使用纯文本浏览器的人来说是非常有用的。
+
+HTML 图像- 设置图像的高度与宽度
+height（高度） 与 width（宽度）属性用于设置图像的高度与宽度。
+属性值默认单位为像素:
+<img src="pulpit.jpg" alt="Pulpit rock" width="304" height="228">
+提示: 指定图像的高度和宽度是一个很好的习惯。如果图像指定了高度宽度，页面加载时就会保留指定的尺寸。如果没有指定图片的大小，加载页面时有可能会破坏HTML页面的整体布局。
+
+<table border="1">
+    <tr>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td>row 2, cell 1</td>
+        <td>row 2, cell 2</td>
+    </tr>
+</table>
+
+HTML 自定义列表
+自定义列表不仅仅是一列项目，而是项目及其注释的组合。
+自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd> 开始。
+<dl>
+<dt>Coffee</dt>
+<dd>- black hot drink</dd>
+<dt>Milk</dt>
+<dd>- white cold drink</dd>
+</dl>
+
+文本域（Text Fields）
+文本域通过<input type="text"> 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。
+<form>
+First name: <input type="text" name="firstname"><br>
+Last name: <input type="text" name="lastname">
+密码字段通过标签<input type="password"> 来定义:
+
+<form>
+Password: <input type="password" name="pwd">
+</form>
+</form>
+
+
+单选按钮（Radio Buttons）
+<input type="radio"> 标签定义了表单单选框选项
+<form>
+<input type="radio" name="sex" value="male">Male<br>
+<input type="radio" name="sex" value="female">Female
+</form>
+
+复选框（Checkboxes）
+<input type="checkbox"> 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。
+<form>
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car
+</form>
+
+提交按钮(Submit Button)
+<input type="submit"> 定义了提交按钮.
+当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:
+<form name="input" action="html_form_action.php" method="get">
+Username: <input type="text" name="user">
+<input type="submit" value="Submit">
+</form>
+
+
+<b>粗体文本</b>
+<code>计算机代码</code>
+<kbd>键盘输入</kbd>
+<strong>重要的文本</strong>
+普通的链接：<a href="http://www.example.com/">链接文本</a>
+图像链接： <a href="http://www.example.com/"><img src="URL" alt="替换文本"></a>
+邮件链接： <a href="mailto:webmaster@example.com">发送e-mail</a>
+-->

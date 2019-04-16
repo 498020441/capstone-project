@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CanvasPath</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/sytles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signin.css') }}">
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename ='js/bootstrap.js')}}"></script>
+    <link rel="shorcut icon" href="{{ url_for('static', filename='images/icon.jpeg')}}">
+</head>
+<body>
+
+<img src="{{ url_for('static', filename='images/b2.png') }}"
+     style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1; '>
+<div class="menu" style="opacity: 0.5;">
+    <div class="menu__content" >
+        <div class="text-center"  >
+            <a href="/login/students/">
+                <h3 class="menu__title">Home</h3>
+            </a>
+        </div>
+        <div class="text-center">
+            <a href="/login/students/courses_info/">
+                <h3 class="menu__title">Course Info</h3>
+            </a>
+        </div>
+        <div class="text-center">
+            <a href="/login/students/self_info/">
+                <h3 class="menu__title">Self Info</h3>
+            </a>
+        </div>
+
+        <div class="text-center">
+            <a href="/logout/">
+                <h3 class="menu__title">Log Out </h3>
+            </a>
+        </div>
+    </div>
+</div>
+<img src="{{ url_for('static', filename='images/cp.svg') }}" style="position: fixed; left :15vh">
+</body>
+</html>

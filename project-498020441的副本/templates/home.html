@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signin.css') }}">
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename ='js/bootstrap.js')}}"></script>
+    <link rel="shorcut icon" href="{{ url_for('static', filename='images/icon.jpeg')}}">
+</head>
+<body>
+
+<img src="{{ url_for('static', filename='images/4.jpg') }}"
+     style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+
+<div1 style=" opacity: 0;
+              margin: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);"  id="demo" >
+    <a href="/login/">
+        <button type="button" id="bg_img" class="rounded-circle" data-toggle="modal" data-target="#myModal" >
+            <img src="{{ url_for('static', filename='images/2.png')}}" class="rounded-circle" style=" height: 100px; width: 100px;" >
+        </button>
+    </a>
+</div1>
+
+<!--
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style=" background: #fefefe;right :5vh; width:600px; height:350px; font-family: 'Comic Sans MS'; opacity: 0.9">
+            <div class="modal-header text-center">
+                <h1 class="modal-title w-100"><strong>WELCOME!</strong></h1>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+                <form class="form-signin" method="post">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus
+                       name= "username" value="{{request.form.username}}">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
+                        name="password" value="{{request.form.password}}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+                <p>{{error}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<script>
+
+    var delayInMilliseconds = 1000; //1 second
+    var delayInMilliseconds1 = 1100;
+    var delayInMilliseconds2 = 1200;
+    var delayInMilliseconds3 = 1300;
+    var delayInMilliseconds4 = 1400;
+    var delayInMilliseconds5 = 1500;
+    var delayInMilliseconds6 = 1600;
+    var delayInMilliseconds7 = 1700;
+    var delayInMilliseconds8 = 1800;
+    var delayInMilliseconds9 = 1900;
+    var delayInMilliseconds10 = 2000;
+    var delayInMilliseconds11 = 2100;
+    var delayInMilliseconds12 = 2200;
+    var delayInMilliseconds13 = 2300;
+    var delayInMilliseconds14 = 2400;
+    var delayInMilliseconds15 = 2500;
+    var delayInMilliseconds16 = 2600;
+    var delayInMilliseconds17 = 2700;
+    var delayInMilliseconds18 = 2800;
+    var delayInMilliseconds19 = 2900;
+
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.05
+    }, delayInMilliseconds);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.1
+    }, delayInMilliseconds1);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.15
+    }, delayInMilliseconds2);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.2
+    }, delayInMilliseconds3);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.25
+    }, delayInMilliseconds4);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.3
+    }, delayInMilliseconds5);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.35
+    }, delayInMilliseconds6);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.4
+    }, delayInMilliseconds7);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.45
+    }, delayInMilliseconds8);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.5
+    }, delayInMilliseconds9);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.55
+    }, delayInMilliseconds10);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.6
+    }, delayInMilliseconds11 );
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.65
+    }, delayInMilliseconds12);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.7
+    }, delayInMilliseconds13);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.75
+    }, delayInMilliseconds14);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.8
+    }, delayInMilliseconds15);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.85
+    }, delayInMilliseconds16);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.9
+    }, delayInMilliseconds17);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 0.95
+    }, delayInMilliseconds18);
+    setTimeout(function() {
+        var x = document.getElementById('demo');
+        x.style.opacity = 1.0
+    }, delayInMilliseconds19);
+
+    /*
+    var delayInMilliseconds = 1000;
+    var j=0;
+    var x = document.getElementById('demo');
+
+    while (delayInMilliseconds < 3000) {
+        setTimeout(
+            function(){
+                x.style.opacity = j + 0.01
+        }, delayInMilliseconds );
+        delayInMilliseconds = delayInMilliseconds + 100;
+    }
+    */
+
+
+
+</script>
+</body>
+</html>

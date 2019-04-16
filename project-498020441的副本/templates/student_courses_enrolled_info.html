@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enrolled</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/sytles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signin.css') }}">
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename ='js/bootstrap.js')}}"></script>
+    <link rel="shorcut icon" href="{{ url_for('static', filename='images/icon.jpeg')}}">
+</head>
+<body>
+
+<img src="{{ url_for('static', filename='images/b2.png') }}"
+     style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1; '>
+<div class="menu" style="opacity: 0.5;">
+    <div class="menu__content" >
+        <div class="text-center"  >
+            <a href="/login/students/">
+                <h3 class="menu__title">Home</h3>
+            </a>
+        </div>
+        <div class="text-center">
+            <a href="/login/students/courses_info/">
+                <h3 class="menu__title">Course Info</h3>
+            </a>
+        </div>
+        <div class="text-center">
+            <a href="/login/students/self_info/">
+                <h3 class="menu__title">Self Info</h3>
+            </a>
+        </div>
+
+        <div class="text-center">
+            <a href="/logout/">
+                <h3 class="menu__title">Log Out </h3>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center" style="background: white; width: 1000px; right: 45px; position: absolute;opacity: 0.7">
+<table class="table">
+  <h1>
+    Enrolled Course List
+  </h1>
+  <thead>
+    <tr >
+      <th scope="col" >#</th>
+      <th scope="col">Course ID</th>
+      <th scope="col">Section</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th scope="row" >
+            <button type="button" data-toggle="modal" data-target="#myModal1" style="border: 0;outline: none;">
+                <img src="{{url_for('static', filename='images/question-circle.svg')}}" style="width: 20px;height: 20px">
+            </button>
+      </th>
+      <td scope="row" >{{value[0][0]}}</td>
+      <td scope="row" >{{value[0][1]}}</td>
+
+    </tr>
+    <tr>
+          <th scope="row" >
+            <button type="button" data-toggle="modal" data-target="#myModal2" style="border: 0;outline: none;">
+                <img src="{{url_for('static', filename='images/question-circle.svg')}}" style="width: 20px;height: 20px">
+            </button>
+        <td scope="row" >{{value[1][0]}}</td>
+        <td scope="row" >{{value[1][1]}}</td>
+    </tr>
+    <tr>
+          <th scope="row" >
+            <button type="button" data-toggle="modal" data-target="#myModal3" style="border: 0;outline: none;">
+                <img src="{{url_for('static', filename='images/question-circle.svg')}}" style="width: 20px;height: 20px">
+            </button>
+        <td scope="row">{{value[2][0]}}</td>
+        <td scope="row">{{value[2][1]}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" >
+    <div class="modal-content" style="right: -100px">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel2">Course Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        {% if value2[0][0] == 'Reg' %}
+        <li>Course Name: {{value2[0][2]}}</li>
+        <li>Section Type: {{value2[0][0]}}</li>
+        <li>Course Description: {{value2[0][3]}}</li>
+        <li>Professor Team ID: {{value2[0][1]}}</li>
+        <li>Professor Email: {{value2[0][4]}}</li>
+        <li>Professor Office: {{value2[0][5]}}</li>
+        <li>Homework Grade: {{value2[0][6]}}</li>
+        <li>Exam Grade: {{value2[0][7]}}</li>
+         {% else %}
+            <p>Capstone</p>
+            <li>Professor Email: {{value2[0][2]}}</li>
+            <p>    </p>
+            <p>Team Members Info: </p>
+            {%for i in range(len) %}
+              <li>Name: {{value2[0][len+i+3]}}, Email: {{value2[0][i+3]}}</li>
+            {% endfor %}
+        {% endif %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="right: -100px">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel3">Course Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        {% if value2[1][0] == 'Reg' %}
+        <li>Course Name: {{value2[1][2]}}</li>
+        <li>Section Type: {{value2[1][0]}}</li>
+        <li>Course Description: {{value2[1][3]}}</li>
+        <li>Professor Team ID: {{value2[1][1]}}</li>
+        <li>Professor Email: {{value2[1][4]}}</li>
+        <li>Professor Office: {{value2[1][5]}}</li>
+        <li>Homework Grade: {{value2[1][6]}}</li>
+        <li>Exam Grade: {{value2[1][7]}}</li>
+         {% else %}
+          <p>Capstone</p>
+          <li>Professor Email: {{value2[1][2]}}</li>
+          <p>    </p>
+          <p>Team Members Info: </p>
+          {%for i in range(len) %}
+            <li>Name: {{value2[1][len+i+3]}}, Email: {{value2[1][i+3]}}</li>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" >
+    <div class="modal-content" style="right: -100px" >
+      <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Course Info</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        {% if value2[2][0] == 'Reg' %}
+        <li>Course Name: {{value2[2][2]}}</li>
+        <li>Section Type: {{value2[2][0]}}</li>
+        <li>Course Description: {{value2[2][3]}}</li>
+        <li>Professor Team ID: {{value2[2][1]}}</li>
+        <li>Professor Email: {{value2[2][4]}}</li>
+        <li>Professor Office: {{value2[2][5]}}</li>
+        <li>Homework Grade: {{value2[2][6]}}</li>
+        <li>Exam Grade: {{value2[2][7]}}</li>
+        {% else %}
+          <p>Capstone</p>
+            <li>Professor Email: {{value2[2][2]}}</li>
+            <p>    </p>
+            <p>Team Members Info: </p>
+            {%for i in range(len) %}
+              <li>Name: {{value2[2][len+3+i]}}, Email: {{value2[2][i+3]}}</li>
+            {% endfor %}
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
