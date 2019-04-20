@@ -1,8 +1,8 @@
 import pandas as pd
 from sqlalchemy import create_engine
+import pymysql
 
-
-engine = create_engine("mysql://root:88888888@127.0.0.1:3306/LSU")
+engine = create_engine("mysql+pymysql://root:88888888@127.0.0.1:3306/LSU")
 skr = engine.connect()
 df = pd.read_csv('Students.csv', header=0)
 df1 = pd.read_csv('Professors.csv', header=0)
@@ -96,12 +96,11 @@ Course3_sec_df.columns = ["course_id", "sec_no", "section_type", "s_limit"]
 Section_df = Course1_sec_df.append(Course2_sec_df.append(Course3_sec_df))
 Section_df.drop_duplicates(subset=["course_id", "sec_no"],keep="first",inplace=True)
 
-Prof_teach_team_df = df1 [["Teaching", "Team ID"]]
-Section_df = Section_df.merge(Prof_teach_team_df, left_on= "course_id", right_on="Teaching")
+Prof_teach_team_df = df1[["Teaching", "Team ID"]]
+Section_df = Section_df.merge(Prof_teach_team_df, left_on="course_id", right_on="Teaching")
 Section_with_team_id_df = Section_df[["course_id", "sec_no", "section_type", "s_limit", "Team ID"]]
-Section_with_team_id_df.columns = ["course_id", "sec_no", "section_type", "s_limit","prof_team_iD"]
+Section_with_team_id_df.columns = ["course_id", "sec_no", "section_type", "s_limit", "prof_team_iD"]
 #Section_with_team_id_df.to_sql(name="Sections", con=skr, if_exists="append",index=False)
-
 
 ####import data to table: enroll
 Enroll1_df = df[["Email", "Courses 1", "Course 1 Section"]]
@@ -121,13 +120,13 @@ Prof_team_df.columns = ["team_id"]
 
 ####import data to table: Prof_teams_member
 Prof_team_member_df = df1[["Email", "Team ID"]]
-Prof_teach_team_df.columns =["prof_email", "team_id"]
-#Prof_teach_team_df.to_sql(name="Prof_teams_members", con=skr, if_exists="append", index=False)
+Prof_team_member_df.columns =["prof_email", "team_id"]
+#Prof_team_member_df.to_sql(name="Prof_teams_members", con=skr, if_exists="append", index=False)
 
 ####import data to table: Homework
 Homework1_df = df[["Courses 1", "Course 1 Section", "Course 1 HW_No","Course 1 HW_Details"]]
 Homework2_df = df[["Courses 2", "Course 2 Section", "Course 2 HW_No","Course 2 HW_Details"]]
-Homework3_df = df[["Courses 3", "Course 2 Section", "Course 2 HW_No","Course 2 HW_Details"]]
+Homework3_df = df[["Courses 3", "Course 3 Section", "Course 3 HW_No","Course 3 HW_Details"]]
 
 Homework1_df.columns = ["course_id","sec_no","hw_no","hw_details"]
 Homework2_df.columns = ["course_id","sec_no","hw_no","hw_details"]
@@ -139,7 +138,7 @@ Homework_df.drop_duplicates(subset=["course_id","sec_no","hw_no"], keep="first",
 ####import data to table: Homework_grades
 Homework1_grade_df = df[["Email", "Courses 1", "Course 1 Section", "Course 1 HW_No", "Course 1 HW_Grade"]]
 Homework2_grade_df = df[["Email", "Courses 2", "Course 2 Section", "Course 2 HW_No", "Course 2 HW_Grade"]]
-Homework3_grade_df = df[["Email", "Courses 3", "Course 2 Section", "Course 2 HW_No", "Course 3 HW_Grade"]]
+Homework3_grade_df = df[["Email", "Courses 3", "Course 3 Section", "Course 3 HW_No", "Course 3 HW_Grade"]]
 
 Homework1_grade_df.columns = ["student_email", "course_id", "sec_no", "hw_no","grade"]
 Homework2_grade_df.columns = ["student_email", "course_id", "sec_no", "hw_no","grade"]
@@ -161,7 +160,7 @@ Exam_df.drop_duplicates(subset=["course_id","sec_no","exam_no"],keep="first",inp
 
 ####import data to table: Exam_grades
 Exam1_grade_df = df[["Email", "Courses 1", "Course 1 Section", "Course 1 EXAM_No", "Course 1 EXAM_Grade"]]
-Exam2_grade_df = df[["Email", "Courses 2", "Course 2 Section", "Course 2 EXAM_No", "Course 3 EXAM_Grade"]]
+Exam2_grade_df = df[["Email", "Courses 2", "Course 2 Section", "Course 2 EXAM_No", "Course 2 EXAM_Grade"]]
 Exam3_grade_df = df[["Email", "Courses 3", "Course 3 Section", "Course 3 EXAM_No", "Course 3 EXAM_Grade"]]
 
 Exam1_grade_df.columns = ["student_email", "course_id", "sec_no", "exam_no","grades"]
@@ -171,11 +170,12 @@ Exam_grade_df = Exam1_grade_df.append(Exam2_grade_df.append(Exam3_grade_df))
 #Exam_grade_df.to_sql(name="Exam_grades", con=skr, if_exists="append", index=False)
 
 ####import data to table:Capstone_section(course_id CHAR(15), sec_no INT, project_no INT, sponsor_id CHAR(50), PRIMARY KEY(course_id, sec_no, project_no))")
-Cap_df = Section_df.loc[Section_df["section_type"]== "Cap"]
+Cap_df = Section_df.loc[ Section_df["section_type"] == "Cap"]
 Cap_df = Cap_df[["course_id", "sec_no", "Team ID"]]
-Cap_section_df = Cap_df.merge(Prof_teach_team_df, left_on="Team ID", right_on="team_id" )
+Cap_section_df = Cap_df.merge(Prof_team_member_df, left_on="Team ID", right_on="team_id" )
 Cap_team_df = Cap_section_df
-Cap_section_df = Cap_section_df[["course_id","sec_no","prof_email"]]
+#print(Cap_section_df)
+Cap_section_df = Cap_section_df[["course_id", "sec_no", "prof_email"]]
 Cap_section_df.columns = ["course_id", "sec_no", "sponsor_id"]
 #Cap_section_df.to_sql(name="Capstone_section", con=skr, if_exists="append")  #then set index to project_no in mysql manually
 
@@ -185,10 +185,10 @@ Cap_team_df.columns = ["course_id", "sec_no", "team_id"]
 #Cap_team_df.to_sql(name="Capstone_Team", con=skr, if_exists="append")  #then set index to project_no in mysql manually
 
 ###import data to table:  Capstone_Team_Members
-Cap_team_member_df = Enroll_df.merge(Cap_team_df, left_on = "course_id" , right_on="course_id")
-Cap_team_member_df.drop_duplicates(subset="student_email", keep="first", inplace=True)
+Cap_team_member_df = Enroll_df.merge(Cap_team_df, left_on = ["course_id","section_no"], right_on=["course_id","sec_no"])
+# print(Cap_team_member_df)
 Cap_team_member_df = Cap_team_member_df[["student_email", "team_id", "course_id", "sec_no"]]
-#Cap_team_member_df.to_sql(name="Capstone_Team_Members", con=skr, if_exists="append", index=False)
+# Cap_team_member_df.to_sql(name="Capstone_Team_Members", con=skr, if_exists="append", index=False)
 
 ###import data to table: Capstone_grades(course_id CHAR(15), sec_no INT,team_id INT, grade INT,PRIMARY KEY (course_id,sec_no,team_id) )"
 #print(Cap_team_df)

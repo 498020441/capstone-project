@@ -1,0 +1,105 @@
+{% extends 'admin.html' %}
+{% block title%}Add Course{% endblock %}
+{% block body %}
+
+    <div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div style="background: white; width:80%; position:fixed;right:30px; border-radius: 10px" >
+        <div style="padding: 10px">
+            <a href="/login/admin/">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            <h1>Fill In the Form Please</h1>
+
+        </div>
+            <thread>
+            <div class="my-custom-scrollbar" >
+            <form class="form-horizontal" method="post">
+                <div style="padding: 10px;">
+                    <h4><strong>Course Info</strong></h4>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourseID" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseID" placeholder="Course ID" required
+                        name="course_id" value="{{ request.form.course_id }}">
+                     </div>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourseName" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseName" placeholder="Course Name" required
+                        name="course_name" value="{{ request.form.course_name }}">
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourseType" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseType" placeholder="Course Type: Cap or Reg" required
+                        name="course_type" value="{{ request.form.course_type }}">
+                     </div>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourseSection" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseSection" placeholder="Section Number" required
+                        name="course_sec" value="{{ request.form.course_sec }}">
+                     </div>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourselimit" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourselimit" placeholder="Course Limit" required
+                        name="course_limit" value="{{ request.form.course_limit}}">
+                     </div>
+                </div>
+                <div style="padding: 10px;">
+                    <h4><strong>Assign Instructor</strong></h4>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourseProf" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseProf" placeholder="Instructor Name" required
+                        name="course_prof" value="{{ request.form.course_prof }}">
+                     </div>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourseProf_email" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseProf_email" placeholder="Instructor Email" required
+                        name="course_prof_email" value="{{ request.form.course_prof_email }}">
+                     </div>
+                </div>
+                 <div class="form-group">
+                     <label for="inputCourseProf_team_id" class="col-sm-2 control-label"></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseProf_team_id" placeholder="Teaching Team ID" required
+                        name="course_team_id" value="{{ request.form.course_team_id }}">
+                     </div>
+                     <div class="col-sm">
+                         <p>  </p>
+                         <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+                     </div>
+                </div>
+            </form>
+        </div>
+    </thread>
+
+    </div>
+
+{% endblock %}

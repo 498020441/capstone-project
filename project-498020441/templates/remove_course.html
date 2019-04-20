@@ -1,0 +1,59 @@
+{% extends 'admin.html' %}
+{% block title%}Remove Course{% endblock %}
+{% block body %}
+
+    <div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+    <div style="background: white; width:900px;height: 400px; position:fixed;right:100px;border-radius: 10px" >
+        <div style="padding: 10px">
+            <a href="/login/admin/">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            <h1>Remove Course </h1>
+        </div>
+
+        <form class="form-horizontal" method="post">
+                <div class="form-group">
+                     <label for="inputProf_email" class="col-sm-2 control-label"><strong>Instructor Email</strong></label>
+                    <div class="col-sm">
+                        <input type="email" class="form-control" id="inputProf_email" placeholder="Email" required
+                        name="prof_email" value="{{ request.form.prof_email }}">
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourseID" class="col-sm-2 control-label"><strong>Course ID</strong></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseID" placeholder="Course ID" required
+                        name="course_id" value="{{ request.form.course_id }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourse_sec" class="col-sm-2 control-label"><strong>Section Number</strong></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourse_sec" placeholder="Section Number" required
+                        name="course_sec" value="{{ request.form.course_sec }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                         <p>  </p>
+                         <button class="btn btn-lg btn-danger btn-block" type="submit">Remove</button>
+                </div>
+        </form>
+    </div>
+{% endblock %}

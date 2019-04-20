@@ -1,6 +1,7 @@
 from passlib.hash import hex_sha256
 import MySQLdb as mysql
 
+
 db = mysql.connect(host="127.0.0.1", port=3306, user="root", password='88888888', db="sys")
 u= "meng lin"
 

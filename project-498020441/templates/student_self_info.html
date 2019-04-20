@@ -1,10 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'header.html' %}
+{% block title%}Self Info {% endblock %}
+{% block body %}
 
-</body>
-</html>
+    <div class="container-fluid" style="min-height: 100%;width: 80%">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert" style="right:-90px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+    <div class="container text-center" style="background: white; width: 1000px; right: 45px; position: absolute;
+    opacity: 0.9; border-radius: 10px;">
+    <table class="table">
+      <h1 class="text-center">
+        Student Self Information
+      </h1>
+      <thead>
+        <tr >
+          <th scope="col" >#</th>
+          <th scope="col">Information</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row" >Email</th>
+          <td scope="row" >{{value[0]}}</td>
+        </tr>
+        <tr>
+            <th scope="row" >Name</th>
+            <td scope="row" >{{value[1]}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Age</th>
+            <td scope="row">{{value[2]}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Gender</th>
+            <td scope="row">{{value[3]}}</td>
+        <tr>
+            <th scope="row">Major</th>
+            <td scope="row">{{value[4]}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Zipcode</th>
+            <td scope="row">{{value[5]}}</td>
+        </tr>
+         <tr>
+            <th scope="row">Change Account Password</th>
+            <td scope="row">
+                <button type="button"data-toggle="modal" data-target="#myModal1" style="border: 0;outline: none;">
+                    <img src="{{ url_for('static', filename='images/edit.svg')}}" style="width: 25px; height: 25px;">
+                </button>
+            </td>
+            </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="width:600px; height:350px; right: -160px">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100">Edit Your Password</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <form class="form-signin" method="post">
+                <label for="inputEmail" class="sr-only">Old Password</label>
+                <input type="password" id="inputEmail" class="form-control" placeholder="Old Password" required
+                       name= "old_password" value="{{ request.form.old_password }}">
+                <label for="inputPassword" class="sr-only">New Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="New Password" required
+                       name="new_password" value="{{ request.form.new_password }}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{%endblock %}

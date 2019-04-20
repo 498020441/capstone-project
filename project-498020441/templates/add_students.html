@@ -1,0 +1,58 @@
+{% extends 'admin.html' %}
+{% block title%}Add Student{% endblock %}
+{% block body %}
+    <div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+    <div style="background: white; width:900px;height: 400px; position:fixed;right:100px; border-radius: 10px" >
+        <div style="padding: 10px">
+            <a href="/login/admin/">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+            <h1>Add Student to Course</h1>
+        </div>
+
+        <form class="form-horizontal" method="post">
+                <div class="form-group">
+                     <label for="inputStudent_email" class="col-sm-2 control-label"><strong>Email</strong></label>
+                    <div class="col-sm">
+                        <input type="email" class="form-control" id="inputStudent_email" placeholder="Student Email" required
+                        name="student_email" value="{{ request.form.student_email }}">
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourseID" class="col-sm-2 control-label"><strong>Course ID</strong></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourseID" placeholder="Course ID" required
+                        name="course_id" value="{{ request.form.course_id }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCourse_sec" class="col-sm-2 control-label"><strong>Section Number</strong></label>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="inputCourse_sec" placeholder="Section Number" required
+                        name="course_sec" value="{{ request.form.course_sec }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                         <p>  </p>
+                         <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+                </div>
+        </form>
+    </div>
+{% endblock %}
