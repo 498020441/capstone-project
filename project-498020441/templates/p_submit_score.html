@@ -1,0 +1,66 @@
+{% extends 'professors.html'%}
+{% block title %} Sumbit Score{% endblock %}
+{% block body %}
+<div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container text-center" style="background: white; width: 800px; right: 150px; position: absolute;
+    opacity: 0.9;border-radius: 10px;padding: 10px">
+    <h1>
+        Submit Assignment Score
+    </h1>
+
+    <form class="form" sytle="height:400px" method="POST">
+        <div style="padding: 10px">
+            <select name="course_id_sec" style="width: 500px; height: 30px;">
+                <option selected >Assigned Courses</option>
+                {% for i in range(len1)%}
+                <option value = "{{value[i][0]}}#{{value[i][1]}}">
+                    {{value[i][0]}} section: {{value[i][1]}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="padding: 10px">
+            <select name="course_type" style="width: 500px; height: 30px;">
+                <option selected >Assignment Type</option>
+                <option value="Homework">Homework</option>
+                <option value="Exam">Exam</option>
+            </select>
+        </div>
+
+        <div  style="padding: 10px; margin-left: 130px;">
+            <input  class="form-control" style="width: 500px; height: 30px;" placeholder="Assignment Number" required
+                name="assignment_no" value="{{request.form.assignment_no}}">
+        </div>
+
+        <div  style="padding: 10px; margin-left: 130px;">
+            <input  type="email" class="form-control" style="width: 500px; height: 30px;" placeholder="Student Email" required
+                name="student_id" value="{{request.form.student_id}}">
+        </div>
+
+
+        <div  style="padding: 10px; margin-left: 130px;">
+            <input class="form-control" style="width: 500px; height: 30px;" placeholder="Assignment Grade" required
+                    name="assignment_grade" value="{{request.form.assignment_grade}}">
+        </div>
+        <button class="btn btn-primary" style="width: 500px; height: 40px; border-radius: 10px" type="submit">Confirm</button>
+    </form>
+</div>
+
+
+
+{% endblock %}

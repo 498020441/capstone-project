@@ -1,0 +1,125 @@
+{% extends 'professors.html'%}
+{% block title %} Score List {% endblock %}
+{% block body %}
+<div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+<div style="background: white;width:85%; position:absolute;right :0px; border-radius: 10px" >
+     <p>
+        <div class="my-custom-scrollbar" >
+          <table class="table">
+              <thead>
+                <tr >
+                    <th scope="col"  >
+                        <a href="/login/professors/submit_score/">
+                             <button type="button" style="border: 0;outline: none;">
+                                <img src="{{ url_for('static', filename='images/keyboard.svg')}}" style="width: 25px; height: 25px;">
+                            </button>
+                        </a>
+                    </th>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Type </th>
+                    <th scope="col">Limit</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Student Email</th>
+                    <th scope="col">Score</th>
+                </tr>
+              </thead>
+              {% set vars={'value': 0} %}
+              {% for i in range(len_course) %}
+                {% for j in range(value2[i]|length) %}
+
+                    <tr>
+                        <td scope="row" class="text-center">
+                            <img src="{{ url_for('static', filename='images/circle.svg')}}" style="width: 5px; height: 5px;">
+                        </td>
+                        <td scope="row" > {{ value_course[i][0] }} </td>
+                        <td scope="row" > {{ value_course[i][1] }} </td>
+                        <td scope="row" > {{ value_course[i][2] }} </td>
+                        <td scope="row" > {{ value_course[i][3] }} </td>
+                        <td scope="row" > {{value2[i][j][0]}} </td>
+                        <td scope="row" > {{value2[i][j][1]}} </td>
+                        <td scope="row" >
+                            <button type="button" data-toggle="modal" data-target= #myModal{{vars['value']}} style="border: 0;outline: none;">
+                                <img src="{{url_for('static', filename='images/lightbulb.svg')}}" style="width: 20px;height: 20px">
+                            </button>
+                        </td>
+                    </tr>
+                     {% if vars.update({'value': vars['value'] + 1 }) %}{% endif %}
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+            </table>
+        </div>
+     </p>
+ </div>
+
+{% set vars={'value': 0} %}
+{% for i in range(len_course) %}
+    {% for j in range(value2[i]|length) %}
+    <div class="modal fade" id=myModal{{vars['value']}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content" style="right: -100px">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel2">Grade Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <table class="table " style="float:left; width: 50%;">
+                  <thead>
+                      <tr >
+                            <th scope="col">Number</th>
+                            <th scope="col">Homework</th>
+                        </tr>
+                  </thead>
+                  {% for k in range(value_hw[i][j]|length)%}
+                        <tr >
+                            <th scope="col"> {{value_hw[i][j][k][0]}}</th>
+                            <th scope="col"> {{value_hw[i][j][k][1]}}</th>
+                        </tr>
+                  {% endfor%}
+              </table>
+              <table class="table " style="float:right;width: 50%">
+                  <thead>
+                      <tr >
+                            <th scope="col">Number</th>
+                            <th scope="col">Exam</th>
+                        </tr>
+                  </thead>
+                 {% for k in range(value_exam[i][j]|length)%}
+                        <tr >
+                            <th scope="col"> {{value_exam[i][j][k][0]}}</th>
+                            <th scope="col"> {{value_exam[i][j][k][1]}}</th>
+                        </tr>
+                  {% endfor%}
+              </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+</div>
+          {% if vars.update({'value': vars['value'] + 1 }) %}{% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'professors.html'%}
+{% block title %} Capstone Team List {% endblock %}
+{% block body %}
+<div class="container-fluid text-center" style="min-height: 100%;width: 80%;position:fixed;top:10px;right:130px">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert" style="right:-100px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+</div>
+
+ <div style="background: white;width:85%; position:absolute;right :0px; border-radius: 10px" >
+     <p>
+        <div class="my-custom-scrollbar" >
+          <table class="table table-striped">
+              <thead>
+                <tr >
+                    <th scope="col"  >
+                         <button type="button"data-toggle="modal" data-target="#myModal1" style="border: 0;outline: none;">
+                            <img src="{{ url_for('static', filename='images/keyboard.svg')}}" style="width: 25px; height: 25px;">
+                        </button>
+                    </th>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Limit</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Student Email</th>
+                    <th scope="col">Homework Number</th>
+                    <th scope="col">Homework Grade</th>
+                    <th scope="col">Team Number</th>
+                    <th scope="col">Team Grade</th>
+                </tr>
+              </thead>
+              {% for i in range(len1)%}
+                {% for j in range(value2[i]|length) %}
+                    <tr>
+                        <td scope="row" class="text-center">
+                            <img src="{{ url_for('static', filename='images/circle.svg')}}" style="width: 5px; height: 5px;">
+                        </td>
+                        <td scope="row" > {{value2[i][j][4]}} </td>
+                        <td scope="row" > {{value2[i][j][5]}} </td>
+                        <td scope="row" > {{value1[i][0]}} </td>
+                        <td scope="row" > {{value2[i][j][1]}} </td>
+                        <td scope="row" > {{value2[i][j][0]}} </td>
+                        <td scope="row" > {{value2[i][j][2]}} </td>
+                        <td scope="row" > {{value2[i][j][3]}} </td>
+                        <td scope="row" > {{value2[i][j][6]}} </td>
+                        <td scope="row" > {{value2[i][j][7]}} </td>
+                    </tr>
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+            </table>
+        </div>
+     </p>
+ </div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" >
+    <div class="modal-content" style="width:600px; height:300px; right: -160px">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100">Grade Capstone Team</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" style="margin-top: 20px">
+            <div style="padding: 10px" method="POST">
+                <form class="form" method="POST">
+                    <div>
+                    <select name="course_id_sec" style="width: 500px; height: 30px;margin-left:10px">
+                        <option selected >Assigned Courses</option>
+                        {% for i in range(len1)%}
+                            <option value = "{{value[i][0]}}#{{value[i][1]}}">
+                                {{value[i][0]}} section: {{value[i][1]}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <div style="padding: 10px; margin:auto">
+                        <input  class="form-control" style="width: 500px; height: 30px;" placeholder="Grade should be out of 100 " required
+                        name="student_grade" value="{{request.form.student_grade}}">
+                    </div>
+                    <div  >
+                        <button class="btn btn-primary" style="width: 504px; height: 40px; border-radius: 10px;margin-right: 2vh;position: absolute" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+{% endblock %}

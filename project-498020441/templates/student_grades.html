@@ -1,0 +1,112 @@
+{% extends 'header.html'%}
+{% block title %} Grades {% endblock %}
+{% block body  %}
+    <div class="container text-center" style="background: white; width: 1000px; right: 45px; position: absolute;
+    opacity: 0.9;border-radius: 10px;">
+        <table class="table my-custom-scrollbar">
+          <h1>
+            Assignment&Grade
+          </h1>
+          <thead>
+            <tr >
+               <th scope="col">Course ID</th>
+               <th scope="col">Section</th>
+               <th scope="col" >Homework Number</th>
+               <th scope="col" >Homework Grade</th>
+               <th scope="col" >Exam Number</th>
+               <th scope="col" >Exam Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in range(len) %}
+                <tr>
+                    <td scope="row" > {{value[i][0]}} </td>
+                    <td scope="row" > {{value[i][1]}} </td>
+                    <td scope="row" > {{value[i][2]}} </td>
+                    <td scope="row" > {{value[i][3]}} </td>
+                    <td scope="row" > {{value[i][4]}} </td>
+                    <td scope="row" > {{value[i][5]}} </td>
+                    <th scope="row" >
+                        <button type="button" data-toggle="modal" data-target= #myModal{{i}} style="border: 0;outline: none;">
+                            <img src="{{url_for('static', filename='images/question-circle.svg')}}" style="width: 20px;height: 20px">
+                        </button>
+                    </th>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    {% for i in range(len) %}
+            <div class="modal fade" id=myModal{{i}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog modal-lg" role="document" >
+                <div class="modal-content" style="right: -100px">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2">Grade Details</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                      {%if value[i][6] == 'Reg'%}
+                      <table class="table">
+                          <thead>
+                              <tr >
+                                    <th scope="col">
+                                        <img src="{{url_for('static', filename='images/star.svg')}}" style="width: 20px;height: 20px">
+                                    </th>
+                                    <th scope="col">Homework</th>
+                                    <th scope="col">Exam</th>
+                                </tr>
+                          </thead>
+                                <tr >
+                                    <th scope="col">Average</th>
+                                    <th scope="col">{{value2[i][0]}}</th>
+                                    <th scope="col">{{value2[i][3]}}</th>
+                                </tr>
+                                <tr >
+                                    <th scope="col">Lowest</th>
+                                    <th scope="col">{{value2[i][1]}}</th>
+                                    <th scope="col">{{value2[i][4]}}</th>
+                                </tr>
+                                <tr >
+                                    <th scope="col">Highest</th>
+                                    <th scope="col">{{value2[i][2]}}</th>
+                                    <th scope="col">{{value2[i][5]}}</th>
+                                </tr>
+                      </table>
+                      {%else%}
+                      <table class="table">
+                          <thead>
+                              <tr >
+                                    <th scope="col">
+                                        <img src="{{url_for('static', filename='images/star.svg')}}" style="width: 20px;height: 20px">
+                                    </th>
+                                    <th scope="col">Homework</th>
+                                    <th scope="col">Exam</th>
+                                </tr>
+                          </thead>
+                                <tr >
+                                    <th scope="col">Average</th>
+                                    <th scope="col">{{value2[i][0]}}</th>
+                                    <th scope="col">None</th>
+                                </tr>
+                                <tr >
+                                    <th scope="col">Lowest</th>
+                                    <th scope="col">{{value2[i][1]}}</th>
+                                    <th scope="col">None</th>
+                                </tr>
+                                <tr >
+                                    <th scope="col">Highest</th>
+                                    <th scope="col">{{value2[i][2]}}</th>
+                                    <th scope="col">None</th>
+                                </tr>
+                          </table>
+                      {% endif %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    {% endfor %}
+
+{% endblock %}

@@ -6,7 +6,7 @@
 
         <p>
             <div class="my-custom-scrollbar" >
-              <table class="table">
+              <table class="table table-striped">
                   <thead>
                     <tr >
                         <th scope="col"  >
@@ -25,9 +25,8 @@
                     </tr>
                   </thead>
 
-                {% set i =0%}
+
                   {% for row in value %}
-                    {% set  i=i+1 %}
                     <tr>
                         <td scope="row" style="text-align: center"><strong><li></li></strong></td>
                         <td scope="row" > {{row[0]}} </td>

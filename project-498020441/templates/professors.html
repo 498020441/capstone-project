@@ -2,14 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CanvasPath</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>{% block title %} CanvasPath {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/sytles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/mdb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signin.css') }}">
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{url_for('static', filename ='js/bootstrap.js')}}"></script>
     <link rel="shorcut icon" href="{{ url_for('static', filename='images/icon.jpeg')}}">
+     <style>
+        .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+        }
+        .mycenter {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        </style>
 </head>
 <body>
-<p>ppppprofessor</p>
+
+<img src="{{ url_for('static', filename='images/b2.png') }}"
+     style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1; '>
+
+<div class="menu" style="opacity: 0.5; width:15%; overflow: scroll; ">
+    <div class="menu__content" >
+        <div class="text-center" style="overflow: scroll">
+            <a href="/login/professors/">
+                <h4 class="menu__title">Home</h4>
+            </a>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%;opacity: 0.5;  '>
+        </div>
+
+        <div class="text-center">
+            <a href="/login/professors/create_assignment/">
+                <h4 class="menu__title">Create Assignment</h4>
+            </a>
+        </div>
+
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%; opacity: 0.5; '>
+        </div>
+        {% for i in range(len_unique) %}
+            {% if 'Reg' in value_unique[i][0] or 'reg' in value_unique[i][0]%}
+            <div class="text-center">
+                <a href="/login/professors/student_score/">
+                    <h4 class="menu__title">Student list</h4>
+                </a>
+            </div>
+            <div>
+                <img src="{{ url_for('static', filename='images/111.svg') }}"
+                        style='width:100%; opacity: 0.5; '>
+            </div>
+
+            {% break %}
+            {% endif %}
+        {% endfor %}
+        <div class="text-center">
+            <a href="/login/professors/submit_score/">
+                <h4 class="menu__title">Submit Score </h4>
+            </a>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                style='width:100%; opacity: 0.5; '>
+        </div>
+
+        {% for i in range(len_unique) %}
+            {% if 'Cap' in value_unique[i][0] or 'cap' in value_unique[i][0]%}
+                <div class="text-center">
+                    <a href="/login/professors/capstone_team_list/">
+                        <h4 class="menu__title">Capstone Team List</h4>
+                    </a>
+                </div>
+                <div>
+                    <img src="{{ url_for('static', filename='images/111.svg') }}"
+                            style='width:100%; opacity: 0.5; '>
+                </div>
+
+                <div class="text-center">
+                    <a href="/login/professors/organize_team/">
+                        <h4 class="menu__title">Organize Team</h4>
+                    </a>
+                </div>
+                <div>
+                    <img src="{{ url_for('static', filename='images/111.svg') }}"
+                            style='width:100%; opacity: 0.5; '>
+                </div>
+                {% break %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="text-center">
+            <a href="/logout/">
+                <h3 class="menu__title">Log Out </h3>
+            </a>
+        </div>
+    </div>
+</div>
+<img src="{{ url_for('static', filename='images/cp.svg') }}" style="position: fixed; left :15vh">
+
+{% block body %}
+{% endblock %}
+
 </body>
 </html>

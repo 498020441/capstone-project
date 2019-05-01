@@ -10,6 +10,13 @@
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{url_for('static', filename ='js/bootstrap.js')}}"></script>
     <link rel="shorcut icon" href="{{ url_for('static', filename='images/icon.jpeg')}}">
+     <style>
+        .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,15 +29,36 @@
                 <h3 class="menu__title">Home</h3>
             </a>
         </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%; opacity: 0.5; '>
+        </div>
         <div class="text-center">
             <a href="/login/students/courses_info/">
                 <h3 class="menu__title">Course Info</h3>
             </a>
         </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%; opacity: 0.5; '>
+        </div>
+        <div class="text-center">
+            <a href="/login/students/grades/">
+                <h3 class="menu__title">Grades</h3>
+            </a>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%; opacity: 0.5; '>
+        </div>
         <div class="text-center">
             <a href="/login/students/self_info/">
                 <h3 class="menu__title">Self Info</h3>
             </a>
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='images/111.svg') }}"
+                    style='width:100%; opacity: 0.5; '>
         </div>
 
         <div class="text-center">
